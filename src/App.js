@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+
 import './App.css';
 
+import Posts from './components/posts'
+import CreatePost from './components/createPost'
+import CreatePostButton from "./components/createPostButton";
+
+import logo from './logo.svg'
+
 function App() {
+  const [viewingAllPosts, setViewingAllPosts] = useState(true);
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App-header">
+          <h1 onClick={() => {window.location.reload(false)}}>NotReddit</h1>
+          <img src={logo} className="App-logo" onClick={() => {window.location.reload(false)}} alt="logo"/>
+      </div>
+      <div className="App">
+        {viewingAllPosts ? <Posts /> : <CreatePost />}
+      </div>
+      {viewingAllPosts ? <CreatePostButton didClick={() => {setViewingAllPosts(false)}} className="Share"/> : null}
     </div>
   );
 }
